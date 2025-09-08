@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 // Next.js đã tích hợp font của google vào bên trong dự án
 import { Inter } from 'next/font/google'; // Re-setup font
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 
 // Setup lại font chữ cho dự án
