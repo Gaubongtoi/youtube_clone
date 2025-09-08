@@ -23,13 +23,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body
-                // Re-setup font chữ
-                className={inter.className}
-            >
-                {children}
-            </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+                <body
+                    // Re-setup font chữ
+                    className={inter.className}
+                >
+                    {children}
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
