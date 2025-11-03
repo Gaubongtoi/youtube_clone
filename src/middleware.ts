@@ -1,6 +1,17 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher(['/protected']);
+
+// Đây là middleware được dùng để bảo vệ các route cần xác thực người dùng
+// Nếu người dùng chưa đăng nhập và cố gắng truy cập vào các route này, họ sẽ được chuyển hướng đến trang đăng nhập
+// Bạn có thể thêm các route cần bảo vệ vào mảng trong hàm createRouteMatcher
+// Ví dụ: createRouteMatcher(['/protected', '/dashboard', '/settings'])
+export default clerkMiddleware(async (auth, req) => {
+    // If the route is protected, ensure the user is authenticated
+    if (isProtectedRoute(req)) {
+        await auth.protect();
+    }
+});
 
 export const config = {
     matcher: [
