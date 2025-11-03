@@ -6,6 +6,7 @@ import { PersonalSection } from './personal-section';
 export const HomeSidebar = () => {
     return (
         <div>
+            {/* Sidebar */}
             <Sidebar className="pt-16 z-40 border-none" collapsible="icon">
                 <SidebarContent className="bg-background">
                     <MainSection />

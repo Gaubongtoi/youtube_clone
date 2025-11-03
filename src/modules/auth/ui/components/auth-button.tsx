@@ -15,6 +15,7 @@ export const AuthButton = () => {
                         },
                     }}
                 />
+                {/* Adding Studio and User Profile */}
             </SignedIn>
             <SignedOut>
                 <SignInButton mode="modal">
@@ -24,7 +25,7 @@ export const AuthButton = () => {
         hover:text-blue-500 border-blue-500/20 rounded-full shadow-none [&_svg]:size-4"
                     >
                         <UserCircleIcon className="size-4" />
-                        Signin
+                        Sign in
                     </Button>
                 </SignInButton>
             </SignedOut>

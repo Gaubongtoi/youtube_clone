@@ -1,6 +1,4 @@
 'use client';
-
-import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from 'lucide-react';
 import {
     SidebarGroup,
     SidebarGroupContent,
@@ -11,46 +9,27 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { useAuth, useClerk } from '@clerk/nextjs';
-
-const items = [
-    {
-        title: 'History',
-        url: '/playlists/history',
-        icon: HistoryIcon,
-        auth: true,
-    },
-    {
-        title: 'Liked videos',
-        url: '/playlists/liked',
-        icon: ThumbsUpIcon,
-        auth: true,
-    },
-    {
-        title: 'All playlists',
-        url: '/playlists',
-        icon: ListVideoIcon,
-        auth: true,
-    },
-];
+import { PersonalSectionItems } from '@/modules/constant';
 
 export const PersonalSection = () => {
     const clerk = useClerk();
     const { isSignedIn } = useAuth();
     return (
         <SidebarGroup>
+            {/* Label */}
             <SidebarGroupLabel>You</SidebarGroupLabel>
             <SidebarGroupContent>
                 <SidebarMenu>
-                    {items.map((item) => (
+                    {PersonalSectionItems.map((item) => (
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton
                                 tooltip={item.title}
-                                asChild
-                                isActive={false}
+                                asChild // To use Link as a child
+                                isActive={false} // To indicate if the item is active
                                 onClick={(e) => {
                                     if (!isSignedIn && item.auth) {
-                                        e.preventDefault();
-                                        return clerk.openSignIn();
+                                        e.preventDefault(); // Prevent navigation
+                                        return clerk.openSignIn(); // Open the sign-in modal
                                     }
                                 }}
                             >
